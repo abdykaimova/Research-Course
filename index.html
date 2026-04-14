@@ -15,7 +15,6 @@
         .tab-content { display: none; animation: fadeIn 0.3s ease; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        /* Modal for Video */
         .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #050505; z-index: 100; overflow-y: auto; }
         .modal.active { display: block; animation: slideUp 0.3s ease; }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
@@ -32,8 +31,9 @@
                     <h1 class="text-xs tracking-widest text-slate-500 uppercase">just aiza</h1>
                     <h2 class="text-2xl font-bold text-white">Research <span class="text-slate-400">Course</span></h2>
                 </div>
-                <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center font-bold text-slate-300">
-                    A
+                <!-- Profile Pic Header -->
+                <div class="w-10 h-10 rounded-full border border-slate-600 overflow-hidden bg-slate-800">
+                    <img src="profile.png" onerror="this.src='https://via.placeholder.com/150/334155/FFFFFF?text=A'" alt="Aiza" class="w-full h-full object-cover">
                 </div>
             </header>
 
@@ -41,56 +41,15 @@
             <section class="glass-panel rounded-2xl p-5 mb-6">
                 <h3 class="text-sm font-semibold mb-2 text-gray-300">Your Progress</h3>
                 <div class="w-full bg-gray-900 rounded-full h-1.5 mb-2">
-                    <div class="bg-slate-400 h-1.5 rounded-full" style="width: 25%"></div>
+                    <div class="bg-slate-400 h-1.5 rounded-full" style="width: 14%"></div>
                 </div>
-                <p class="text-xs text-gray-500">1/4 Modules Completed. lock in season 🦅</p>
+                <p class="text-xs text-gray-500">3/21 Modules Completed. lock in season 🦅</p>
             </section>
 
-            <!-- Modules -->
-            <section>
-                <h3 class="text-lg font-bold mb-4 text-white">Course Modules</h3>
-                
-                <!-- Unlocked Module (Clickable) -->
-                <div onclick="openLesson()" class="glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between cursor-pointer hover:bg-white/5 transition border-l-2 border-l-slate-400">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300">
-                            ▶️
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-sm text-gray-200">1. The Mindset & Topic</h4>
-                            <p class="text-xs text-gray-500">Video • 15 min + PDF</p>
-                        </div>
-                    </div>
-                    <div class="text-slate-400 text-xs px-2 py-1 bg-slate-800 rounded-md">PLAY</div>
-                </div>
-
-                <!-- Locked Module 1 (Clickable but shows alert) -->
-                <div onclick="alert('Бро, сначала пройди первый модуль! 🔒')" class="glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between opacity-50 cursor-pointer">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-gray-600">
-                            📄
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-sm text-gray-400">2. Literature Review</h4>
-                            <p class="text-xs text-gray-600">Video • 20 min</p>
-                        </div>
-                    </div>
-                    <div class="text-gray-600 text-sm">🔒</div>
-                </div>
-
-                <!-- Locked Module 2 -->
-                <div onclick="alert('Этот модуль пока закрыт 🔒')" class="glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between opacity-50 cursor-pointer">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-gray-600">
-                            📊
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-sm text-gray-400">3. Data Scraping</h4>
-                            <p class="text-xs text-gray-600">Video • 45 min + Scripts</p>
-                        </div>
-                    </div>
-                    <div class="text-gray-600 text-sm">🔒</div>
-                </div>
+            <!-- Modules List -->
+            <section id="modules-container">
+                <h3 class="text-lg font-bold mb-4 text-white">Course Modules (21 total)</h3>
+                <!-- JavaScript will inject all 21 modules here -->
             </section>
         </div>
 
@@ -100,7 +59,10 @@
                 <h2 class="text-2xl font-bold text-white mb-2">About <span class="text-slate-400">Author</span></h2>
             </header>
             <div class="glass-panel rounded-2xl p-6 text-center mb-6">
-                <div class="w-24 h-24 mx-auto rounded-full bg-slate-800 border-2 border-slate-600 mb-4 flex items-center justify-center text-3xl">🦅</div>
+                <!-- Profile Pic Big -->
+                <div class="w-24 h-24 mx-auto rounded-full bg-slate-800 border-2 border-slate-600 mb-4 overflow-hidden">
+                    <img src="profile.png" onerror="this.src='https://via.placeholder.com/150/334155/FFFFFF?text=A'" alt="Aiza" class="w-full h-full object-cover">
+                </div>
                 <h3 class="text-xl font-bold text-white mb-1">Aiza Abdykaimova</h3>
                 <p class="text-xs text-slate-400 mb-4">Data Analyst & EdTech PM</p>
                 <p class="text-sm text-gray-400 text-left leading-relaxed">
@@ -125,10 +87,10 @@
                 </div>
                 <div class="text-xl">💳</div>
             </div>
-            <div class="glass-panel rounded-2xl p-5 mb-4 flex justify-between items-center cursor-pointer hover:bg-white/5" onclick="alert('Тут будут скачанные материалы')">
+            <div class="glass-panel rounded-2xl p-5 mb-4 flex justify-between items-center cursor-pointer hover:bg-white/5" onclick="alert('Скачать материалы курса')">
                 <div>
                     <h4 class="font-bold text-white text-sm">Saved Materials</h4>
-                    <p class="text-xs text-gray-500">2 PDFs available</p>
+                    <p class="text-xs text-gray-500">3 PDFs available</p>
                 </div>
                 <div class="text-xl">📁</div>
             </div>
@@ -159,8 +121,8 @@
                     <span>←</span> Back to Course
                 </button>
                 
-                <h2 class="text-xl font-bold text-white mb-2">1. The Mindset & Topic</h2>
-                <p class="text-xs text-gray-500 mb-6">Module 1 • 15 minutes</p>
+                <h2 id="modal-title" class="text-xl font-bold text-white mb-2">Lesson Title</h2>
+                <p id="modal-subtitle" class="text-xs text-gray-500 mb-6">Module • Video</p>
                 
                 <!-- Video Player Placeholder -->
                 <div class="w-full aspect-video bg-slate-900 rounded-xl border border-white/10 flex items-center justify-center mb-6 relative overflow-hidden">
@@ -172,48 +134,106 @@
 
                 <div class="glass-panel p-5 rounded-2xl mb-4">
                     <h3 class="font-bold text-white text-sm mb-2">Lesson Notes</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        In this lesson, we cover how to pick a research topic that admissions committees actually care about. Stop writing about generic topics. We dive into data scraping, finding the "gap" in the literature, and positioning your paper.
+                    <p id="modal-desc" class="text-sm text-gray-400 leading-relaxed">
+                        Lesson content will appear here.
                     </p>
                 </div>
 
                 <button onclick="alert('Скачивание PDF начнется скоро...')" class="w-full py-4 rounded-xl bg-slate-800 text-slate-200 border border-slate-600 font-bold text-sm hover:bg-slate-700 transition flex justify-center items-center gap-2">
-                    <span>📄</span> Download Workbook PDF
+                    <span>📄</span> Download Transcript PDF
                 </button>
             </div>
         </div>
 
     </div>
 
-    <!-- JAVASCRIPT FOR CLICKS -->
+    <!-- JAVASCRIPT FOR DYNAMIC LESSONS -->
     <script>
         function switchTab(tabName) {
-            // Hide all tabs
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            // Reset nav colors
             document.querySelectorAll('.nav-item').forEach(nav => {
                 nav.classList.remove('text-slate-300');
                 nav.classList.add('text-gray-600');
                 nav.querySelector('span:last-child').classList.remove('font-semibold');
             });
-
-            // Show selected tab
             document.getElementById('tab-' + tabName).classList.add('active');
-            
-            // Highlight selected nav
             const activeNav = document.getElementById('nav-' + tabName);
             activeNav.classList.remove('text-gray-600');
             activeNav.classList.add('text-slate-300');
             activeNav.querySelector('span:last-child').classList.add('font-semibold');
         }
 
-        function openLesson() {
+        const lessons = [
+            { id: 1, title: "1. Defining Research & Characteristics", desc: "The story of Maya Chen. What makes a project 'real research'? We cover the 5 specific characteristics: answering a specific question, methodology, literature, academic output, and mentorship." },
+            { id: 2, title: "2. Why Research Matters For You", desc: "Understanding the impact of research on your academic and professional trajectory." },
+            { id: 3, title: "3. Research Types", desc: "Qualitative vs Quantitative, Exploratory vs Conclusive. Finding what fits your question." },
+            { id: 4, title: "4. What An 'Interest' Really Is", desc: "How to distinguish between a hobby and a researchable academic interest." },
+            { id: 5, title: "5. Research Disciplines", desc: "Mapping out fields of study. Social sciences, STEM, humanities, and interdisciplinary approaches." },
+            { id: 6, title: "6. The IFR Framework", desc: "A structural approach to organizing your thoughts and narrowing down scope." },
+            { id: 7, title: "7. Literature Review Essentials", desc: "How to stand on the shoulders of giants without drowning in PDFs." },
+            { id: 8, title: "8. Finding the Gap", desc: "Identifying what hasn't been studied yet. The sweet spot for a breakthrough paper." },
+            { id: 9, title: "9. Research Question", desc: "The core of your paper. If your question is weak, the entire paper collapses." },
+            { id: 10, title: "10. How to Come Up With a Research Question", desc: "Actionable frameworks to brainstorm and refine your central inquiry." },
+            { id: 11, title: "11. The Magic Formula", desc: "A reliable template for writing a strong, specific, and testable research question." },
+            { id: 12, title: "12. What Makes a Research Question Good?", desc: "Testability, scope, significance, and clarity." },
+            { id: 13, title: "13. Finding Your Sweet Spot", desc: "Balancing passion, feasibility, and academic rigor." },
+            { id: 14, title: "14. Primary vs Secondary Data Collection", desc: "When to gather your own data vs when to scrape, download, or aggregate existing datasets." },
+            { id: 15, title: "15. Data Collection Methods Overview", desc: "Surveys, interviews, scraping, APIs, and observational studies." },
+            { id: 16, title: "16. Types of Questions", desc: "Open-ended vs close-ended. Structuring surveys to get statistically significant results." },
+            { id: 17, title: "17. Asking the Right Questions", desc: "Avoiding leading questions and ensuring data integrity." },
+            { id: 18, title: "18. Sampling Methods - Who to Ask", desc: "Random, stratified, convenience sampling. How to avoid corrupted datasets." },
+            { id: 19, title: "19. Understanding Bias in Research", desc: "Confirmation bias, selection bias, and algorithmic bias. How to catch it." },
+            { id: 20, title: "20. Research Ethics", desc: "Plagiarism, data manipulation, and conducting research responsibly." },
+            { id: 21, title: "21. Conclusion, what’s next", desc: "Publishing your paper, leveraging your findings for Ivy League admissions, and taking the next step." }
+        ];
+
+        function openLesson(id) {
+            const lesson = lessons[id - 1];
+            document.getElementById('modal-title').innerText = lesson.title;
+            document.getElementById('modal-subtitle').innerText = `Module ${id} • Video Lesson`;
+            document.getElementById('modal-desc').innerText = lesson.desc;
             document.getElementById('lesson-modal').classList.add('active');
         }
 
         function closeLesson() {
             document.getElementById('lesson-modal').classList.remove('active');
         }
+
+        // Generate all 21 modules dynamically
+        const container = document.getElementById('modules-container');
+        lessons.forEach(lesson => {
+            const div = document.createElement('div');
+            
+            // Первые 3 урока открыты, остальные закрыты (для демо)
+            if (lesson.id <= 3) {
+                div.className = "glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between cursor-pointer hover:bg-white/5 transition border-l-2 border-l-slate-400";
+                div.onclick = () => openLesson(lesson.id);
+                div.innerHTML = `
+                    <div class="flex items-center gap-4 w-full">
+                        <div class="w-10 h-10 min-w-[2.5rem] rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 text-xs">▶️</div>
+                        <div class="flex-1 truncate pr-2">
+                            <h4 class="font-semibold text-sm text-gray-200 truncate" title="${lesson.title}">${lesson.title}</h4>
+                            <p class="text-xs text-gray-500">Video • 10-15 min</p>
+                        </div>
+                    </div>
+                    <div class="text-slate-400 text-xs px-2 py-1 bg-slate-800 rounded-md">PLAY</div>
+                `;
+            } else {
+                div.className = "glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between opacity-40 cursor-pointer";
+                div.onclick = () => alert('Бро, этот модуль пока закрыт! 🔒 Пройди предыдущие.');
+                div.innerHTML = `
+                    <div class="flex items-center gap-4 w-full">
+                        <div class="w-10 h-10 min-w-[2.5rem] rounded-xl bg-[#111] flex items-center justify-center text-gray-600 text-xs">🔒</div>
+                        <div class="flex-1 truncate pr-2">
+                            <h4 class="font-semibold text-sm text-gray-400 truncate" title="${lesson.title}">${lesson.title}</h4>
+                            <p class="text-xs text-gray-600">Video • Locked</p>
+                        </div>
+                    </div>
+                    <div class="text-gray-600 text-sm">🔒</div>
+                `;
+            }
+            container.appendChild(div);
+        });
     </script>
 </body>
 </html>
