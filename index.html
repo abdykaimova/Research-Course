@@ -25,19 +25,16 @@
         
         <!-- ================= COURSE TAB ================= -->
         <div id="tab-course" class="tab-content active">
-            <!-- Header -->
             <header class="flex justify-between items-center mb-8 pt-4">
                 <div>
                     <h1 class="text-xs tracking-widest text-slate-500 uppercase">just aiza</h1>
                     <h2 class="text-2xl font-bold text-white">Research <span class="text-slate-400">Course</span></h2>
                 </div>
-                <!-- Profile Pic Header -->
                 <div class="w-10 h-10 rounded-full border border-slate-600 overflow-hidden bg-slate-800">
                     <img src="profile.png" onerror="this.src='https://via.placeholder.com/150/334155/FFFFFF?text=A'" alt="Aiza" class="w-full h-full object-cover">
                 </div>
             </header>
 
-            <!-- Progress -->
             <section class="glass-panel rounded-2xl p-5 mb-6">
                 <h3 class="text-sm font-semibold mb-2 text-gray-300">Your Progress</h3>
                 <div class="w-full bg-gray-900 rounded-full h-1.5 mb-2">
@@ -46,10 +43,8 @@
                 <p class="text-xs text-gray-500">3/21 Modules Completed. lock in season 🦅</p>
             </section>
 
-            <!-- Modules List -->
             <section id="modules-container">
                 <h3 class="text-lg font-bold mb-4 text-white">Course Modules (21 total)</h3>
-                <!-- JavaScript will inject all 21 modules here -->
             </section>
         </div>
 
@@ -59,7 +54,6 @@
                 <h2 class="text-2xl font-bold text-white mb-2">About <span class="text-slate-400">Author</span></h2>
             </header>
             <div class="glass-panel rounded-2xl p-6 text-center mb-6">
-                <!-- Profile Pic Big -->
                 <div class="w-24 h-24 mx-auto rounded-full bg-slate-800 border-2 border-slate-600 mb-4 overflow-hidden">
                     <img src="profile.png" onerror="this.src='https://via.placeholder.com/150/334155/FFFFFF?text=A'" alt="Aiza" class="w-full h-full object-cover">
                 </div>
@@ -124,12 +118,7 @@
                 <h2 id="modal-title" class="text-xl font-bold text-white mb-2">Lesson Title</h2>
                 <p id="modal-subtitle" class="text-xs text-gray-500 mb-6">Module • Video</p>
                 
-                <!-- Video Player Placeholder -->
-                <div class="w-full aspect-video bg-slate-900 rounded-xl border border-white/10 flex items-center justify-center mb-6 relative overflow-hidden">
-                    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-30"></div>
-                    <div class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center cursor-pointer z-10 hover:bg-white/20 transition">
-                        <span class="text-2xl ml-1">▶</span>
-                    </div>
+                <div id="video-container" class="w-full aspect-video bg-slate-900 rounded-xl border border-white/10 flex items-center justify-center mb-6 relative overflow-hidden">
                 </div>
 
                 <div class="glass-panel p-5 rounded-2xl mb-4">
@@ -139,9 +128,9 @@
                     </p>
                 </div>
 
-                <button onclick="alert('Скачивание PDF начнется скоро...')" class="w-full py-4 rounded-xl bg-slate-800 text-slate-200 border border-slate-600 font-bold text-sm hover:bg-slate-700 transition flex justify-center items-center gap-2">
+                <a id="modal-pdf-btn" href="#" target="_blank" class="w-full py-4 rounded-xl bg-slate-800 text-slate-200 border border-slate-600 font-bold text-sm hover:bg-slate-700 transition flex justify-center items-center gap-2 hidden">
                     <span>📄</span> Download Transcript PDF
-                </button>
+                </a>
             </div>
         </div>
 
@@ -164,9 +153,9 @@
         }
 
         const lessons = [
-            { id: 1, title: "1. Defining Research & Characteristics", desc: "The story of Maya Chen. What makes a project 'real research'? We cover the 5 specific characteristics: answering a specific question, methodology, literature, academic output, and mentorship." },
-            { id: 2, title: "2. Why Research Matters For You", desc: "Understanding the impact of research on your academic and professional trajectory." },
-            { id: 3, title: "3. Research Types", desc: "Qualitative vs Quantitative, Exploratory vs Conclusive. Finding what fits your question." },
+            { id: 1, title: "1. Defining Research & Characteristics", desc: "The story of Maya Chen. What makes a project 'real research'? We cover the 5 specific characteristics: answering a specific question, methodology, literature, academic output, and mentorship.", videoId: "WIHH4OkkJk4", pdf: "lesson1.pdf" },
+            { id: 2, title: "2. Why Research Matters For You", desc: "Understanding the impact of research on your academic and professional trajectory.", videoId: "", pdf: "" },
+            { id: 3, title: "3. Research Types", desc: "Qualitative vs Quantitative, Exploratory vs Conclusive. Finding what fits your question.", videoId: "", pdf: "" },
             { id: 4, title: "4. What An 'Interest' Really Is", desc: "How to distinguish between a hobby and a researchable academic interest." },
             { id: 5, title: "5. Research Disciplines", desc: "Mapping out fields of study. Social sciences, STEM, humanities, and interdisciplinary approaches." },
             { id: 6, title: "6. The IFR Framework", desc: "A structural approach to organizing your thoughts and narrowing down scope." },
@@ -192,19 +181,39 @@
             document.getElementById('modal-title').innerText = lesson.title;
             document.getElementById('modal-subtitle').innerText = `Module ${id} • Video Lesson`;
             document.getElementById('modal-desc').innerText = lesson.desc;
+            
+            const videoContainer = document.getElementById('video-container');
+            if (lesson.videoId) {
+                videoContainer.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${lesson.videoId}?rel=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            } else {
+                videoContainer.innerHTML = `
+                    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-30"></div>
+                    <div class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center cursor-pointer z-10 hover:bg-white/20 transition">
+                        <span class="text-2xl ml-1">▶</span>
+                    </div>
+                `;
+            }
+            
+            const pdfBtn = document.getElementById('modal-pdf-btn');
+            if (lesson.pdf) {
+                pdfBtn.href = lesson.pdf;
+                pdfBtn.style.display = 'flex';
+            } else {
+                pdfBtn.style.display = 'none';
+            }
+            
             document.getElementById('lesson-modal').classList.add('active');
         }
 
         function closeLesson() {
+            document.getElementById('video-container').innerHTML = '';
             document.getElementById('lesson-modal').classList.remove('active');
         }
 
-        // Generate all 21 modules dynamically
         const container = document.getElementById('modules-container');
         lessons.forEach(lesson => {
             const div = document.createElement('div');
             
-            // Первые 3 урока открыты, остальные закрыты (для демо)
             if (lesson.id <= 3) {
                 div.className = "glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between cursor-pointer hover:bg-white/5 transition border-l-2 border-l-slate-400";
                 div.onclick = () => openLesson(lesson.id);
