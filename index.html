@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>just aiza | Research Course</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #f3f4f6; }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .text-slate-blue { color: #64748b; } /* Тускло-синий / серый */
+        .bg-slate-blue { background-color: #334155; }
+        .app-container { max-width: 400px; margin: 0 auto; min-height: 100vh; position: relative; padding-bottom: 80px; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="app-container p-5">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-8 pt-4">
+            <div>
+                <h1 class="text-xs tracking-widest text-slate-500 uppercase">just aiza</h1>
+                <h2 class="text-2xl font-bold text-white">Research <span class="text-slate-400">Course</span></h2>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center font-bold text-slate-300">
+                A
+            </div>
+        </header>
+
+        <!-- Progress -->
+        <section class="glass-panel rounded-2xl p-5 mb-6">
+            <h3 class="text-sm font-semibold mb-2 text-gray-300">Your Progress</h3>
+            <div class="w-full bg-gray-900 rounded-full h-1.5 mb-2">
+                <div class="bg-slate-400 h-1.5 rounded-full" style="width: 25%"></div>
+            </div>
+            <p class="text-xs text-gray-500">1/4 Modules Completed. lock in season 🦅</p>
+        </section>
+
+        <!-- Modules -->
+        <section>
+            <h3 class="text-lg font-bold mb-4 text-white">Course Modules</h3>
+            
+            <!-- Unlocked Module -->
+            <div class="glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between cursor-pointer hover:bg-white/5 transition">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300">
+                        ▶️
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-sm text-gray-200">1. The Mindset & Topic</h4>
+                        <p class="text-xs text-gray-500">Video • 15 min + PDF</p>
+                    </div>
+                </div>
+                <div class="text-gray-500 text-sm">🔓</div>
+            </div>
+
+            <!-- Locked Module 1 -->
+            <div class="glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between opacity-50">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-gray-600">
+                        📄
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-sm text-gray-400">2. Literature Review</h4>
+                        <p class="text-xs text-gray-600">Video • 20 min</p>
+                    </div>
+                </div>
+                <div class="text-gray-600 text-sm">🔒</div>
+            </div>
+
+            <!-- Locked Module 2 -->
+            <div class="glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between opacity-50">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-gray-600">
+                        📊
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-sm text-gray-400">3. Data Scraping</h4>
+                        <p class="text-xs text-gray-600">Video • 45 min + Scripts</p>
+                    </div>
+                </div>
+                <div class="text-gray-600 text-sm">🔒</div>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="fixed bottom-0 left-0 right-0 glass-panel bg-[#050505]/95 border-t border-white/5 z-50">
+            <div class="max-w-[400px] mx-auto flex justify-around p-4">
+                <div class="flex flex-col items-center text-slate-300 cursor-pointer">
+                    <span class="text-lg mb-1">📚</span>
+                    <span class="text-[10px] font-semibold">Course</span>
+                </div>
+                <div class="flex flex-col items-center text-gray-600 hover:text-slate-400 cursor-pointer">
+                    <span class="text-lg mb-1">✍️</span>
+                    <span class="text-[10px]">Author</span>
+                </div>
+                <div class="flex flex-col items-center text-gray-600 hover:text-slate-400 cursor-pointer">
+                    <span class="text-lg mb-1">👤</span>
+                    <span class="text-[10px]">Profile</span>
+                </div>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>
