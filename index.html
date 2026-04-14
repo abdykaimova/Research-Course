@@ -7,99 +7,213 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #f3f4f6; }
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #f3f4f6; overflow-x: hidden; }
         .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .text-slate-blue { color: #64748b; } /* Тускло-синий / серый */
+        .text-slate-blue { color: #64748b; }
         .bg-slate-blue { background-color: #334155; }
         .app-container { max-width: 400px; margin: 0 auto; min-height: 100vh; position: relative; padding-bottom: 80px; }
+        .tab-content { display: none; animation: fadeIn 0.3s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* Modal for Video */
+        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #050505; z-index: 100; overflow-y: auto; }
+        .modal.active { display: block; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
     </style>
 </head>
 <body class="antialiased">
     <div class="app-container p-5">
-        <!-- Header -->
-        <header class="flex justify-between items-center mb-8 pt-4">
-            <div>
-                <h1 class="text-xs tracking-widest text-slate-500 uppercase">just aiza</h1>
-                <h2 class="text-2xl font-bold text-white">Research <span class="text-slate-400">Course</span></h2>
-            </div>
-            <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center font-bold text-slate-300">
-                A
-            </div>
-        </header>
-
-        <!-- Progress -->
-        <section class="glass-panel rounded-2xl p-5 mb-6">
-            <h3 class="text-sm font-semibold mb-2 text-gray-300">Your Progress</h3>
-            <div class="w-full bg-gray-900 rounded-full h-1.5 mb-2">
-                <div class="bg-slate-400 h-1.5 rounded-full" style="width: 25%"></div>
-            </div>
-            <p class="text-xs text-gray-500">1/4 Modules Completed. lock in season 🦅</p>
-        </section>
-
-        <!-- Modules -->
-        <section>
-            <h3 class="text-lg font-bold mb-4 text-white">Course Modules</h3>
-            
-            <!-- Unlocked Module -->
-            <div class="glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between cursor-pointer hover:bg-white/5 transition">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300">
-                        ▶️
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-sm text-gray-200">1. The Mindset & Topic</h4>
-                        <p class="text-xs text-gray-500">Video • 15 min + PDF</p>
-                    </div>
+        
+        <!-- ================= COURSE TAB ================= -->
+        <div id="tab-course" class="tab-content active">
+            <!-- Header -->
+            <header class="flex justify-between items-center mb-8 pt-4">
+                <div>
+                    <h1 class="text-xs tracking-widest text-slate-500 uppercase">just aiza</h1>
+                    <h2 class="text-2xl font-bold text-white">Research <span class="text-slate-400">Course</span></h2>
                 </div>
-                <div class="text-gray-500 text-sm">🔓</div>
-            </div>
-
-            <!-- Locked Module 1 -->
-            <div class="glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between opacity-50">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-gray-600">
-                        📄
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-sm text-gray-400">2. Literature Review</h4>
-                        <p class="text-xs text-gray-600">Video • 20 min</p>
-                    </div>
+                <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center font-bold text-slate-300">
+                    A
                 </div>
-                <div class="text-gray-600 text-sm">🔒</div>
-            </div>
+            </header>
 
-            <!-- Locked Module 2 -->
-            <div class="glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between opacity-50">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-gray-600">
-                        📊
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-sm text-gray-400">3. Data Scraping</h4>
-                        <p class="text-xs text-gray-600">Video • 45 min + Scripts</p>
-                    </div>
+            <!-- Progress -->
+            <section class="glass-panel rounded-2xl p-5 mb-6">
+                <h3 class="text-sm font-semibold mb-2 text-gray-300">Your Progress</h3>
+                <div class="w-full bg-gray-900 rounded-full h-1.5 mb-2">
+                    <div class="bg-slate-400 h-1.5 rounded-full" style="width: 25%"></div>
                 </div>
-                <div class="text-gray-600 text-sm">🔒</div>
-            </div>
-        </section>
+                <p class="text-xs text-gray-500">1/4 Modules Completed. lock in season 🦅</p>
+            </section>
 
-        <!-- Bottom Navigation -->
-        <nav class="fixed bottom-0 left-0 right-0 glass-panel bg-[#050505]/95 border-t border-white/5 z-50">
+            <!-- Modules -->
+            <section>
+                <h3 class="text-lg font-bold mb-4 text-white">Course Modules</h3>
+                
+                <!-- Unlocked Module (Clickable) -->
+                <div onclick="openLesson()" class="glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between cursor-pointer hover:bg-white/5 transition border-l-2 border-l-slate-400">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300">
+                            ▶️
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm text-gray-200">1. The Mindset & Topic</h4>
+                            <p class="text-xs text-gray-500">Video • 15 min + PDF</p>
+                        </div>
+                    </div>
+                    <div class="text-slate-400 text-xs px-2 py-1 bg-slate-800 rounded-md">PLAY</div>
+                </div>
+
+                <!-- Locked Module 1 (Clickable but shows alert) -->
+                <div onclick="alert('Бро, сначала пройди первый модуль! 🔒')" class="glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between opacity-50 cursor-pointer">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-gray-600">
+                            📄
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm text-gray-400">2. Literature Review</h4>
+                            <p class="text-xs text-gray-600">Video • 20 min</p>
+                        </div>
+                    </div>
+                    <div class="text-gray-600 text-sm">🔒</div>
+                </div>
+
+                <!-- Locked Module 2 -->
+                <div onclick="alert('Этот модуль пока закрыт 🔒')" class="glass-panel rounded-2xl p-4 mb-3 flex items-center justify-between opacity-50 cursor-pointer">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-gray-600">
+                            📊
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm text-gray-400">3. Data Scraping</h4>
+                            <p class="text-xs text-gray-600">Video • 45 min + Scripts</p>
+                        </div>
+                    </div>
+                    <div class="text-gray-600 text-sm">🔒</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= AUTHOR TAB ================= -->
+        <div id="tab-author" class="tab-content">
+            <header class="mb-8 pt-4">
+                <h2 class="text-2xl font-bold text-white mb-2">About <span class="text-slate-400">Author</span></h2>
+            </header>
+            <div class="glass-panel rounded-2xl p-6 text-center mb-6">
+                <div class="w-24 h-24 mx-auto rounded-full bg-slate-800 border-2 border-slate-600 mb-4 flex items-center justify-center text-3xl">🦅</div>
+                <h3 class="text-xl font-bold text-white mb-1">Aiza Abdykaimova</h3>
+                <p class="text-xs text-slate-400 mb-4">Data Analyst & EdTech PM</p>
+                <p class="text-sm text-gray-400 text-left leading-relaxed">
+                    I reverse-engineer algorithms and build products for Generation Z. <br><br>
+                    Published in 6 journals (including Harvard JEI). Scraped 12K+ data rows to expose digital redlining. Building at Hired Valley.
+                </p>
+            </div>
+            <a href="https://t.me/aizi_ss" target="_blank" class="block w-full py-3 rounded-xl bg-slate-200 text-black text-center font-bold text-sm hover:bg-white transition">
+                Telegram Blog
+            </a>
+        </div>
+
+        <!-- ================= PROFILE TAB ================= -->
+        <div id="tab-profile" class="tab-content">
+            <header class="mb-8 pt-4">
+                <h2 class="text-2xl font-bold text-white mb-2">Your <span class="text-slate-400">Profile</span></h2>
+            </header>
+            <div class="glass-panel rounded-2xl p-5 mb-4 flex justify-between items-center">
+                <div>
+                    <h4 class="font-bold text-white text-sm">Subscription</h4>
+                    <p class="text-xs text-green-400">Active (Premium)</p>
+                </div>
+                <div class="text-xl">💳</div>
+            </div>
+            <div class="glass-panel rounded-2xl p-5 mb-4 flex justify-between items-center cursor-pointer hover:bg-white/5" onclick="alert('Тут будут скачанные материалы')">
+                <div>
+                    <h4 class="font-bold text-white text-sm">Saved Materials</h4>
+                    <p class="text-xs text-gray-500">2 PDFs available</p>
+                </div>
+                <div class="text-xl">📁</div>
+            </div>
+        </div>
+
+        <!-- ================= BOTTOM NAV ================= -->
+        <nav class="fixed bottom-0 left-0 right-0 glass-panel bg-[#050505]/95 border-t border-white/5 z-40">
             <div class="max-w-[400px] mx-auto flex justify-around p-4">
-                <div class="flex flex-col items-center text-slate-300 cursor-pointer">
+                <div onclick="switchTab('course')" id="nav-course" class="flex flex-col items-center text-slate-300 cursor-pointer nav-item">
                     <span class="text-lg mb-1">📚</span>
                     <span class="text-[10px] font-semibold">Course</span>
                 </div>
-                <div class="flex flex-col items-center text-gray-600 hover:text-slate-400 cursor-pointer">
+                <div onclick="switchTab('author')" id="nav-author" class="flex flex-col items-center text-gray-600 hover:text-slate-400 cursor-pointer nav-item transition">
                     <span class="text-lg mb-1">✍️</span>
                     <span class="text-[10px]">Author</span>
                 </div>
-                <div class="flex flex-col items-center text-gray-600 hover:text-slate-400 cursor-pointer">
+                <div onclick="switchTab('profile')" id="nav-profile" class="flex flex-col items-center text-gray-600 hover:text-slate-400 cursor-pointer nav-item transition">
                     <span class="text-lg mb-1">👤</span>
                     <span class="text-[10px]">Profile</span>
                 </div>
             </div>
         </nav>
+
+        <!-- ================= VIDEO LESSON MODAL ================= -->
+        <div id="lesson-modal" class="modal">
+            <div class="p-5 pb-20">
+                <button onclick="closeLesson()" class="text-slate-400 text-sm font-semibold mb-6 flex items-center gap-2 hover:text-white">
+                    <span>←</span> Back to Course
+                </button>
+                
+                <h2 class="text-xl font-bold text-white mb-2">1. The Mindset & Topic</h2>
+                <p class="text-xs text-gray-500 mb-6">Module 1 • 15 minutes</p>
+                
+                <!-- Video Player Placeholder -->
+                <div class="w-full aspect-video bg-slate-900 rounded-xl border border-white/10 flex items-center justify-center mb-6 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-30"></div>
+                    <div class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center cursor-pointer z-10 hover:bg-white/20 transition">
+                        <span class="text-2xl ml-1">▶</span>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-5 rounded-2xl mb-4">
+                    <h3 class="font-bold text-white text-sm mb-2">Lesson Notes</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        In this lesson, we cover how to pick a research topic that admissions committees actually care about. Stop writing about generic topics. We dive into data scraping, finding the "gap" in the literature, and positioning your paper.
+                    </p>
+                </div>
+
+                <button onclick="alert('Скачивание PDF начнется скоро...')" class="w-full py-4 rounded-xl bg-slate-800 text-slate-200 border border-slate-600 font-bold text-sm hover:bg-slate-700 transition flex justify-center items-center gap-2">
+                    <span>📄</span> Download Workbook PDF
+                </button>
+            </div>
+        </div>
+
     </div>
+
+    <!-- JAVASCRIPT FOR CLICKS -->
+    <script>
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            // Reset nav colors
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('text-slate-300');
+                nav.classList.add('text-gray-600');
+                nav.querySelector('span:last-child').classList.remove('font-semibold');
+            });
+
+            // Show selected tab
+            document.getElementById('tab-' + tabName).classList.add('active');
+            
+            // Highlight selected nav
+            const activeNav = document.getElementById('nav-' + tabName);
+            activeNav.classList.remove('text-gray-600');
+            activeNav.classList.add('text-slate-300');
+            activeNav.querySelector('span:last-child').classList.add('font-semibold');
+        }
+
+        function openLesson() {
+            document.getElementById('lesson-modal').classList.add('active');
+        }
+
+        function closeLesson() {
+            document.getElementById('lesson-modal').classList.remove('active');
+        }
+    </script>
 </body>
 </html>
